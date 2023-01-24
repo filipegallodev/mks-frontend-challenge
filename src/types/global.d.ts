@@ -1,3 +1,7 @@
+interface IData {
+  products: IRawProductData[];
+}
+
 interface IRawProductData {
   brand: string;
   createdAt: string;
