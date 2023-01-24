@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/Product/ProductCard";
 import Header from "@/components/Header";
 import { useEffect, useState } from "react";
 import fetchData from "@/scripts/fetchData";

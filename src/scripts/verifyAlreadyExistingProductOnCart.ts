@@ -6,7 +6,15 @@ export default function verifyAlreadyExistingProductOnCart(
     const count = state.find((product) => {
       if (product.id === payload.id) return product;
     })?.count;
-    if (count) return { ...payload, count: count + 1 };
+    const price = state.find((product) => {
+      if (product.id === payload.id) return product;
+    })?.price;
+    if (count && price)
+      return {
+        ...payload,
+        price: price + payload.price,
+        count: count + 1,
+      };
   }
 
   return { ...payload, count: 1 };
