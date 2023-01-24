@@ -1,26 +1,27 @@
+import CartModal from "./CartModal";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
-interface State {
-  cart: IState;
-}
+import { useSelector, useDispatch } from "react-redux";
+import { openModal, closeModal } from "@/store/cart";
+import isStateInterface from "@/scripts/isStateInterface";
 
 const Header = () => {
-  const state = useSelector((state) => state);
   const [totalItems, setTotalItems] = useState<number>();
+  const [modalStatus, setModalStatus] = useState(false);
+
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isStateInterface(state)) setTotalItems(state.cart.totalItems);
+    if (isStateInterface(state)) {
+      setModalStatus(state.cart.modalOpen);
+      setTotalItems(state.cart.totalItems);
+    }
   }, [state]);
 
-  function isStateInterface(state: unknown): state is State {
-    if (state && typeof state === "object" && "cart" in state) return true;
-
-    return false;
-  }
-
   function handleModal() {
-    console.log("Modal aberto");
+    if (isStateInterface(state) && modalStatus) return dispatch(closeModal());
+
+    return dispatch(openModal());
   }
 
   return (
@@ -33,6 +34,7 @@ const Header = () => {
       <div>
         <button onClick={handleModal}>Carrinho: {totalItems}</button>
       </div>
+      {modalStatus && <CartModal />}
     </header>
   );
 };
