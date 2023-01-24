@@ -22,12 +22,14 @@ interface IProduct {
   photo: string;
   price: number;
   updatedAt: string;
+  count?: number;
 }
 
 interface IState {
   products: IProduct[];
   totalPrice: number;
   totalItems: number;
+  modalOpen: boolean;
 }
 
 interface IAction {
