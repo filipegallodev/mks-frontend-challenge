@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addOnCart, removeFromCart } from "@/store/cart";
+import {
+  addOnCart,
+  removeFromCart,
+  removeAllOfTheProductFromCart,
+} from "@/store/cart";
 
 const ProductMiniCard = (product: IProduct) => {
   const [totalProductCount, setTotalProductCount] = useState<number>(0);
@@ -13,6 +17,9 @@ const ProductMiniCard = (product: IProduct) => {
 
   return (
     <div>
+      <button onClick={() => dispatch(removeAllOfTheProductFromCart(product))}>
+        X
+      </button>
       {/* <Image src={product.photo} alt={product.name} width={150} height={150} /> */}
       <h4>{product.name}</h4>
       <div>

@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal, closeModal } from "@/store/cart";
 import isStateInterface from "@/scripts/isStateInterface";
+import styled from "styled-components";
+
+import cartIcon from "@/images/cart.svg";
+import Image from "next/image";
 
 const Header = () => {
   const [totalItems, setTotalItems] = useState<number>();
@@ -25,18 +29,56 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <StyledHeader>
       <div>
-        <span>
-          <span>MKS</span> Sistemas
-        </span>
+        <PrimaryTitle>
+          <PrimaryTitleStrong>MKS</PrimaryTitleStrong> Sistemas
+        </PrimaryTitle>
       </div>
       <div>
-        <button onClick={handleModal}>Carrinho: {totalItems}</button>
+        <CartButton onClick={handleModal}>
+          <Image src={cartIcon} alt="Cart" height={18} width={20} />{" "}
+          <CardButtonText>{totalItems}</CardButtonText>
+        </CartButton>
       </div>
       {modalStatus ? <CartModal /> : null}
-    </header>
+    </StyledHeader>
   );
 };
+
+const StyledHeader = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 4rem;
+  background-color: #0f52ba;
+`;
+
+const PrimaryTitle = styled.h1`
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 300;
+`;
+
+const PrimaryTitleStrong = styled.span`
+  font-size: 2.5rem;
+  font-weight: 600;
+`;
+
+const CartButton = styled.button`
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+`;
+
+const CardButtonText = styled.span`
+  font-size: 1.075rem;
+  font-weight: 700;
+`;
 
 export default Header;
