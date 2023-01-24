@@ -1,21 +1,43 @@
 export default function verifyAlreadyExistingProductOnCart(
-  state: IProduct[],
-  payload: IProduct
+  stateProducts: IProduct[],
+  payload: IProduct,
+  action: string
 ) {
-  if (state.some((product) => product.id === payload.id)) {
-    const count = state.find((product) => {
+  if (action === "cart/addOnCart")
+    return addOneOfTheSameProduct(stateProducts, payload);
+
+  return removeOneOfTheSameProduct(stateProducts, payload);
+}
+
+function addOneOfTheSameProduct(stateProducts: IProduct[], payload: IProduct) {
+  if (stateProducts.some((product) => product.id === payload.id)) {
+    const count = stateProducts.find((product) => {
       if (product.id === payload.id) return product;
     })?.count;
-    const price = state.find((product) => {
-      if (product.id === payload.id) return product;
-    })?.price;
-    if (count && price)
+
+    if (count)
       return {
         ...payload,
-        price: price + payload.price,
         count: count + 1,
       };
   }
 
   return { ...payload, count: 1 };
+}
+
+function removeOneOfTheSameProduct(
+  stateProducts: IProduct[],
+  payload: IProduct
+) {
+  const count = stateProducts.find((product) => {
+    if (product.id === payload.id) return product;
+  })?.count;
+
+  if (count)
+    return {
+      ...payload,
+      count: count - 1,
+    };
+
+  return payload;
 }

@@ -1,3 +1,4 @@
+import handleSameProduct from "@/scripts/handleSameProduct";
 import verifyAlreadyExistingProductOnCart from "@/scripts/verifyAlreadyExistingProductOnCart";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -15,26 +16,24 @@ const slice = createSlice({
     addOnCart(state: IState, action: IAction) {
       action.payload = verifyAlreadyExistingProductOnCart(
         state.products,
-        action.payload
+        action.payload,
+        action.type
       );
 
-      const index = state.products.findIndex(
-        (product) => product.id === action.payload.id
-      );
-
-      if (index !== -1) {
-        state.products[index] = action.payload;
-      } else {
-        state.products = state.products
-          ? [...state.products, { ...action.payload }]
-          : [action.payload];
-      }
-
+      state.products = handleSameProduct(state.products, action.payload,action.type);
       state.totalItems++;
       state.totalPrice += action.payload.price;
     },
-    removeFromCart(state) {
+    removeFromCart(state: IState, action: IAction) {
+      action.payload = verifyAlreadyExistingProductOnCart(
+        state.products,
+        action.payload,
+        action.type
+      );
+
+      state.products = handleSameProduct(state.products, action.payload,action.type);
       state.totalItems--;
+      state.totalPrice -= action.payload.price;
     },
     openModal(state) {
       state.modalOpen = true;

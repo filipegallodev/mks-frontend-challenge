@@ -34,7 +34,7 @@ const Header = () => {
       <div>
         <button onClick={handleModal}>Carrinho: {totalItems}</button>
       </div>
-      {modalStatus && <CartModal />}
+      {modalStatus ? <CartModal /> : null}
     </header>
   );
 };

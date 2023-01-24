@@ -25,7 +25,7 @@ const CartModal = () => {
       {totalPrice && (
         <div>
           <span>Total: </span>
-          <span>{totalPrice}</span>
+          <span>R${totalPrice.toLocaleString()}</span>
         </div>
       )}
     </div>
