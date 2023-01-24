@@ -15,11 +15,22 @@ interface IRawProductData {
 
 interface IProduct {
   brand: string;
-  createdAt: Date;
+  createdAt: string;
   description: string;
   id: number;
   name: string;
   photo: string;
   price: number;
-  updatedAt: Date;
+  updatedAt: string;
+}
+
+interface IState {
+  products: IProduct[];
+  totalPrice: number;
+  totalItems: number;
+}
+
+interface IAction {
+  type: string;
+  payload: IProduct;
 }
