@@ -74,6 +74,7 @@ const CartButton = styled.button`
   align-items: center;
   justify-content: space-around;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 const CardButtonText = styled.span`
