@@ -1,7 +1,8 @@
 import Head from "next/head";
-import fetchData from "@/scripts/fetchData";
 import ProductCard from "@/components/ProductCard";
+import Header from "@/components/Header";
 import { useEffect, useState } from "react";
+import fetchData from "@/scripts/fetchData";
 import handleProductData from "@/scripts/handleProductData";
 import isObjectWithProducts from "@/scripts/isObjectWithProducts";
 
@@ -30,6 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Header />
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} {...product} />
