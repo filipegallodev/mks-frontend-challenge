@@ -13,8 +13,13 @@ const ProductCard = (product: IProduct) => {
   return (
     <StyledProductCard>
       <MainProductContent>
-        <Image2 />
-        {/* <Image src={product.photo} alt={product.name} width={150} height={150} /> */}
+        <Image
+          src={product.photo}
+          alt={product.name}
+          width={150}
+          height={150}
+          style={{ margin: "0 auto" }}
+        />
         <NameAndPriceContainer>
           <ProductName>{product.name}</ProductName>
           <ProductPrice>R${product.price.toLocaleString()}</ProductPrice>
@@ -33,9 +38,10 @@ const StyledProductCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 12rem 0;
   border-radius: 8px;
-  max-width: 220px;
+  max-width: 240px;
+  height: 330px;
+  background-color: #fff;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
   overflow: hidden;
 `;
@@ -45,13 +51,6 @@ const MainProductContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
-`;
-
-const Image2 = styled.img`
-  height: 150px;
-  width: 150px;
-  margin: 0 auto;
-  background-color: green;
 `;
 
 const NameAndPriceContainer = styled.div`
@@ -97,6 +96,10 @@ const BuyButton = styled.button`
   border: none;
   padding: 0.75rem;
   cursor: pointer;
+  &:hover {
+    background-color: #256bd4;
+    transition: 0.3s;
+  }
 `;
 
 export default ProductCard;

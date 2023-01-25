@@ -20,7 +20,11 @@ const slice = createSlice({
         action.type
       );
 
-      state.products = handleSameProduct(state.products, action.payload,action.type);
+      state.products = handleSameProduct(
+        state.products,
+        action.payload,
+        action.type
+      );
       state.totalItems++;
       state.totalPrice += action.payload.price;
     },
@@ -31,9 +35,26 @@ const slice = createSlice({
         action.type
       );
 
-      state.products = handleSameProduct(state.products, action.payload,action.type);
+      state.products = handleSameProduct(
+        state.products,
+        action.payload,
+        action.type
+      );
       state.totalItems--;
       state.totalPrice -= action.payload.price;
+    },
+    removeAllOfTheProductFromCart(state: IState, action: IAction) {
+      const removedItems = state.products.find(
+        (product) => product.id === action.payload.id
+      )?.count;
+
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload.id
+      );
+      if (removedItems) {
+        state.totalItems -= removedItems;
+        state.totalPrice -= action.payload.price * removedItems;
+      }
     },
     openModal(state) {
       state.modalOpen = true;
@@ -44,6 +65,11 @@ const slice = createSlice({
   },
 });
 
-export const { addOnCart, removeFromCart, openModal, closeModal } =
-  slice.actions;
+export const {
+  addOnCart,
+  removeFromCart,
+  removeAllOfTheProductFromCart,
+  openModal,
+  closeModal,
+} = slice.actions;
 export default slice.reducer;

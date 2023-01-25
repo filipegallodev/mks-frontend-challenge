@@ -8,28 +8,7 @@ import isObjectWithProducts from "@/scripts/isObjectWithProducts";
 import styled from "styled-components";
 
 export default function Home() {
-  const [products, setProducts] = useState<IProduct[]>([
-    {
-      brand: "Item 1",
-      createdAt: "string",
-      description: "Kkoaskoa aksdko akos kodko kaosdo kaoksd",
-      id: 1,
-      name: "Item 1",
-      photo: "string",
-      price: 250,
-      updatedAt: "string",
-    },
-    {
-      brand: "Item 2",
-      createdAt: "string",
-      description: "a0kisdo0 ikpaopks dkoasdko kaks dkoaoksd kooksd koaos",
-      id: 2,
-      name: "Item 2",
-      photo: "string",
-      price: 500,
-      updatedAt: "string",
-    },
-  ]);
+  const [products, setProducts] = useState<IProduct[]>();
 
   useEffect(() => {
     async function fetchProducts() {
@@ -53,21 +32,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
+      <MainContent>
         <MainSection>
           {products &&
             products.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
         </MainSection>
-      </main>
+      </MainContent>
     </>
   );
 }
 
-const MainSection = styled.section`
+const MainContent = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const MainSection = styled.section`
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 5rem 0;
   gap: 1.375rem;
 `;

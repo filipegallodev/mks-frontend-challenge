@@ -41,7 +41,7 @@ const Header = () => {
           <CardButtonText>{totalItems}</CardButtonText>
         </CartButton>
       </div>
-      {modalStatus ? <CartModal /> : null}
+      {modalStatus ? <CartModal modalStatus={modalStatus} /> : null}
     </StyledHeader>
   );
 };
@@ -75,9 +75,14 @@ const CartButton = styled.button`
   justify-content: space-around;
   gap: 1rem;
   cursor: pointer;
+  &:hover {
+    background-color: #dfdbff;
+    transition: 0.3s;
+  }
 `;
 
 const CardButtonText = styled.span`
+  width: 20px;
   font-size: 1.075rem;
   font-weight: 700;
 `;
