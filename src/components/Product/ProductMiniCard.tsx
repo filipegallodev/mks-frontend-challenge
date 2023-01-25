@@ -9,7 +9,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import plusIcon from "@/images/plus.png";
 import minusIcon from "@/images/minus.png";
-import verticalBarIcon from "@/images/vertical-bar.svg";
 
 const ProductMiniCard = (product: IProduct) => {
   const [totalProductCount, setTotalProductCount] = useState<number>(0);

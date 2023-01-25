@@ -1,6 +1,7 @@
 import Head from "next/head";
 import ProductCard from "@/components/Product/ProductCard";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import fetchData from "@/scripts/fetchData";
 import handleProductData from "@/scripts/handleProductData";
@@ -40,6 +41,7 @@ export default function Home() {
             ))}
         </MainSection>
       </MainContent>
+      <Footer />
     </>
   );
 }
