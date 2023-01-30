@@ -1,4 +1,5 @@
 # MKS Sistemas - Loja
+![Capa](https://i.imgur.com/WcEPG6g.png)
 
 ## Como usar
 
@@ -21,3 +22,8 @@ yarn dev
 pnpm dev
 ```
 Após isso, abra [http://localhost:3000](http://localhost:3000) em seu navegador.
+
+## Funcionalidades
+- Adicionar produto ao carrinho;
+- Aumentar ou diminuir a quantidade desejada do produto no carrinho;
+- Remover os produtos do carrinho.
